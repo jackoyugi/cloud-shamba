@@ -2,9 +2,9 @@ package models;
 
 import java.util.Objects;
 
-public class Animal  {
-    public int id;
-    public String animal_type;
+public class Animal {
+    private int id;
+    private String animal_type;
 
     public Animal (String animal_type) {
         this.animal_type = animal_type;
