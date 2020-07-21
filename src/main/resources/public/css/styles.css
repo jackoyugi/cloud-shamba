@@ -27,11 +27,12 @@
 }
 body{
     text-align: center;
-    background-image:linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),url(/images/owl.jpg);
+    background-image:linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),url(/img/cloud-shamba.jpeg);
     position: relative;
     height: 100vh;
     background-repeat: no-repeat;
     background-size: cover;
+    font-color: green;
 }
  nav{
     animation: 1s ease-out 0s 1 slideInFromRight;
