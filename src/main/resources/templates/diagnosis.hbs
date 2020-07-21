@@ -1,0 +1,27 @@
+{{#partial "styles"}}
+    <link rel='stylesheet' href='/css/styles.css'>
+{{/partial}}
+{{#partial "content"}}
+    <h1>All animals</h1>
+
+    <div class="container">
+        {{#each diagnosis}}
+            <!-- Card content -->
+            <div class="card-body card-body-cascade text-center">
+
+                <h4 class="card-title"><strong>{{animal_type}}</strong></h4>
+<!--                <h6 class="font-weight-bold indigo-text py-2">{{animal_type}}</h6>-->
+                <br>
+                <br>
+                <form action="/diagnosis/{{id}}/delete" method="post">
+                    <a href="/diagnosis/{{id}}/delete"><button class="btn btn-danger">Delete Diagnosis</button></a>
+                </form>
+            </div>
+        {{/each}}
+    </div>
+    <div class="row text-center">
+        <a href="/animals/new"><button class="btn btn-dark-green">Add New Animal</button></a>
+        <a href="/diagnosis/new"><button class="btn btn-outline-success">Add New Diagnosis</button></a>
+    </div>
+{{/partial}}
+{{> layout.hbs}}
