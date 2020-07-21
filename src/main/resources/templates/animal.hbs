@@ -1,0 +1,22 @@
+{{#block "styles"}}
+    <link rel="stylesheet" href="/css/styles.css" type="text/css">
+{{/block}}
+{{#partial "content"}}
+    <h1>All Animals</h1>
+
+    <div class="container">
+        {{#each animals}}
+            <div class="card-body card-body-cascade text-center">
+                <h4 class="card-title"><strong>{{animal_type}}</strong></h4>
+            </div>
+            <br>
+            <form action="/animals{{id}}/delete" method="post" class="jumbotron">
+                <a href="/animals{{id}}"><button class="btn btn-outline-danger">Delete Animal</button></a>
+            </form>
+        {{/each}}
+    </div>
+    <div class="row text-center">
+        <a href="/animals/new"><button class="btn btn-outline-success">Add new Animal</button> </a>
+    </div>
+{{/partial}}
+{{> layout.hbs}}
