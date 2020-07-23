@@ -18,3 +18,10 @@ number_dead INTEGER,
 photo_url BLOB
 );
 
+CREATE TABLE IF NOT EXISTS farmers (
+id int PRIMARY KEY auto_increment,
+name VARCHAR,
+location VARCHAR,
+contacts VARCHAR
+);
+
