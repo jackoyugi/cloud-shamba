@@ -28,8 +28,8 @@ public class Sql2oVaccinationDaoTest {
     @Test
     public void addingVaccinationSetsId() {
         Vaccination vaccination = new Vaccination("weekly injections",  3);
-        int originalVaccinationId = vaccination.getId();
+        int originalVaccinationId = vaccination.getId(0);
         vaccinationDao.add(vaccination);
-        assertNotEquals(originalVaccinationId, vaccination.getId());
+        assertNotEquals(originalVaccinationId, vaccination.getId(1));
     }
 }

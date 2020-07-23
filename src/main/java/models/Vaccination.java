@@ -41,7 +41,7 @@ public class Vaccination {
         if (this == o) return true;
         if (!(o instanceof Vaccination)) return false;
         Vaccination that = (Vaccination) o;
-        return getId() == that.getId() &&
+        return getId(0) == that.getId(0) &&
                 getVaccination_programme().equals(that.getVaccination_programme()) &&
                 getFlock_number()==(that.getFlock_number());
     }

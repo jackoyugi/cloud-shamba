@@ -1,3 +1,4 @@
+import dao.AnimalDao;
 import models.Animal;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
@@ -26,6 +27,16 @@ public class App {
             Map<String, Object> model = new HashMap<>();
             return new ModelAndView(model, "index.hbs");
         }, new HandlebarsTemplateEngine());
+
+        get("/animals/new", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            model.put("animals", Animal.animals);
+            return new ModelAndView(model, "animal-form.hbs");
+        }, new HandlebarsTemplateEngine());
+
+
+
+
 
     }
 

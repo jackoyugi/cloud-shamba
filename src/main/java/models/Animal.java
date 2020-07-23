@@ -5,9 +5,11 @@ import java.util.Objects;
 public class Animal {
     private int id;
     private String animal_type;
+    public static final String animals="animals";
 
     public Animal (String animal_type) {
         this.animal_type = animal_type;
+        this.animal_type=animals;
 
     }
 
