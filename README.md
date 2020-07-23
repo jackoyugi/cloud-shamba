@@ -1,6 +1,8 @@
 # CLOUD SHAMBA 
 
 #### An app that enables farmers to get mobile phone diagnosis for livestock disease and also livestock feeds.
+![image](https://user-images.githubusercontent.com/64521605/88305840-a6d05d00-cd12-11ea-84f8-0273e8859139.png)
+
 #### The Team
 <ul>
 <li>**Jack Oyugi**</li>
