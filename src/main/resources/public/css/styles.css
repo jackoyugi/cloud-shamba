@@ -3,12 +3,13 @@
 
 * {
     margin: 0;
-    padding: 0;
+    padding: 10 px;
     box-sizing: border-box;
     color:#fff;
     font-family: 'Abel', sans-serif;
     transition: all 0.2s ease-out;
-    font-size:20px;
+    font-size:30px;
+    color: white;
 }
 .form input[type=text]{
     color:white;
@@ -27,20 +28,20 @@
 }
 body{
     text-align: center;
-    background-image:linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),url(/img/cloud-shamba.jpeg);
+    background-image:linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),url(/img/cloud.png);
     position: relative;
     height: 100vh;
     background-repeat: no-repeat;
     background-size: cover;
-    font-color: green;
+    color: green;
 }
  nav{
     animation: 1s ease-out 0s 1 slideInFromRight;
-    padding: 30px;
+    padding: 10px;
     display: inline-block;
-      padding: 10px 30px;
+      padding: 10px 10px;
       font-size: 1em;
-      color: white;
+      font-color: green;
       cursor: pointer;
   }
   @keyframes slideInFromRight {
@@ -57,4 +58,8 @@ body{
             70%{box-shadow: 0px 0px 20px rgb(255, 255, 255)}
         transform: translateX(2);
       }
+    }
+    .collapse navbar-collapse{
+    color: green;
+
     }
