@@ -1,0 +1,26 @@
+{{#partial "styles"}}
+    <link rel='stylesheet' href='/css/styles.css'>
+{{/partial}}
+{{#partial "content"}}
+    <h1>Feeds</h1>
+
+    <div class="container">
+        {{#each diagnosis}}
+            <!-- Card content -->
+            <div class="card-body card-body-cascade text-center">
+
+                <h4 class="card-title"><strong>{{feed_type}}</strong></h4>
+                <!--                <h6 class="font-weight-bold indigo-text py-2">{{animal_type}}</h6>-->
+                <br>
+                <br>
+                <form action="/feeds/{{id}}/delete" method="post">
+                    <a href="/feeds/{{id}}/delete"><button class="btn btn-danger">Delete Feeds</button></a>
+                </form>
+            </div>
+        {{/each}}
+    </div>
+    <div class="row text-center">
+        <a href="/feeds/new"><button class="btn btn-dark-green">Add New Feed</button></a>
+    </div>
+{{/partial}}
+{{> layout.hbs}}
