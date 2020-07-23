@@ -19,5 +19,5 @@ public interface FeedsDao {
 
     //DELETE
     void deleteById(int id);
-    void clearAllHeroes();
+    void clearAllFeeds();
 }
