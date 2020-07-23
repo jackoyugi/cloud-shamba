@@ -13,25 +13,39 @@ public class Sql2oFarmerDao implements FarmerDao{
     }
 
     @Override
-    public List<Diagnosis> getAll() {
+    public void add(Farmer farmer) {
+        String sql = "INSERT INTO farmers (name, location, contacts) VALUES (:name, :location, :contacts)";
         try (Connection con = sql2o.open()) {
-            return con.createQuery("SELECT * FROM diagnosis")
-                    .executeAndFetch(Diagnosis.class);
+            int id = (int) con.createQuery(sql, true)
+                    .bind(farmer)
+                    .executeUpdate()
+                    .getKey();
+            farmer.setId(id);
+        } catch (Sql2oException ex) {
+            System.out.println(ex);
         }
     }
 
     @Override
-    public Diagnosis findById(int id) {
+    public List<Farmer> getAll() {
         try (Connection con = sql2o.open()) {
-            return con.createQuery("SELECT * FROM diagnosis WHERE id = :id")
+            return con.createQuery("SELECT * FROM farmers")
+                    .executeAndFetch(Farmer.class);
+        }
+    }
+
+    @Override
+    public Farmer findById(int id) {
+        try (Connection con = sql2o.open()) {
+            return con.createQuery("SELECT * FROM farmers WHERE id = :id")
                     .addParameter("id", id)
-                    .executeAndFetchFirst(Diagnosis.class);
+                    .executeAndFetchFirst(Farmer.class);
         }
     }
 
     @Override
     public void deleteById(int id) {
-        String sql = "DELETE from diagnosis WHERE id = :id"; //raw sql
+        String sql = "DELETE from farmers WHERE id = :id"; //raw sql
         try (Connection con = sql2o.open()) {
             con.createQuery(sql)
                     .addParameter("id", id)
@@ -44,12 +58,11 @@ public class Sql2oFarmerDao implements FarmerDao{
 
     @Override
     public void clearAllFarmers() {
-        String sql = "DELETE from diagnosis";
+        String sql = "DELETE from farmers";
         try (Connection con = sql2o.open()) {
             con.createQuery(sql).executeUpdate();
         } catch (Sql2oException ex) {
             System.out.println(ex);
         }
     }
-}
 }
