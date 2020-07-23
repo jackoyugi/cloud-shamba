@@ -31,5 +31,11 @@ feed_type VARCHAR,
 location VARCHAR,
 price INTEGER,
 quantity INTEGER
-)
+);
+
+CREATE TABLE IF NOT EXISTS vaccinations (
+id int PRIMARY KEY auto_increment,
+vaccination_programme VARCHAR,
+flock_number INTEGER
+);
 
