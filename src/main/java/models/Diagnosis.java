@@ -12,6 +12,7 @@ public class Diagnosis {
     private int number_sick;
     private int number_dead;
     private String photo_url;
+    private int id;
 
     public Diagnosis (String sex, String age, String clinical_signs, int herd_number, int number_sick, int number_dead){
         this. sex = sex;
@@ -110,12 +111,21 @@ public class Diagnosis {
         this.photo_url = photo_url;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Diagnosis)) return false;
         Diagnosis diagnosis = (Diagnosis) o;
-        return getHerd_number() == diagnosis.getHerd_number() &&
+        return  getId() == diagnosis.getId() &&
+                getHerd_number() == diagnosis.getHerd_number() &&
                 getNumber_sick() == diagnosis.getNumber_sick() &&
                 getNumber_dead() == diagnosis.getNumber_dead() &&
                 getSex().equals(diagnosis.getSex()) &&

@@ -7,6 +7,8 @@ public class Feeds {
     private String location;
     private int price;
     private int quantity;
+    private int id;
+
     public Feeds(String feed_type, String location, int price, int quantity){
         this.location=location;
         this.feed_type=feed_type;
@@ -44,12 +46,21 @@ public class Feeds {
         this.quantity=quantity;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Feeds)) return false;
         Feeds feeds = (Feeds) o;
-        return getPrice() == feeds.getPrice() &&
+        return  getId() == feeds.getId() &&
+                getPrice() == feeds.getPrice() &&
                 getFeed_type().equals(feeds.getFeed_type()) &&
                 getLocation().equals(feeds.getLocation())&&
                 getQuantity()==feeds.getQuantity();
