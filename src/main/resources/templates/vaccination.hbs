@@ -1,0 +1,33 @@
+{{#partial "styles"}}
+    <link rel='stylesheet' href='/css/styles.css'>
+{{/partial}}
+{{#partial "content"}}
+    <h1>All Animals</h1>
+
+    <div class="container">
+    {{#each vaccination}}
+
+            <h4 class="card-title"><strong>{{vaccination_programme}}</strong></h4>
+            <h4 class="card-title"><strong>{{flock_number}}</strong></h4>
+
+            <form action="/vaccination/{{id}}/delete" method="post" class="jumbotron">
+                <a href="/vaccination/{{id}}/delete"><button class="btn btn-danger">Delete Vaccination</button></a>
+            </form>
+        </div>
+    {{/each}}
+    </div>
+
+
+    <br>
+
+    <br>
+
+
+    </div>
+
+
+    <div class="row text-center">
+        <a href="/vaccination/new"><button class="btn btn-outline-success">Add New Vaccination</button></a>
+    </div>
+{{/partial}}
+{{> layout.hbs}}

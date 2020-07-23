@@ -1,0 +1,27 @@
+{{#partial "styles"}}
+    <link rel='stylesheet' href='/css/styles.css'>
+{{/partial}}
+{{#partial "content"}}
+    <h1>All Farmers</h1>
+    <div class="container">
+    {{#each farmer}}
+            <h4 class="card-title"><strong>{{name}}</strong></h4>
+
+            <h6 class="font-weight-bold indigo-text py-2">Contact: {{contact}}</h6>
+            <h6 class="font-weight-bold indigo-text py-2">Location: {{location}}</h6>
+
+            <br>
+            <br>
+
+            <a href="/farmers/{{id}}/edit"><button class="btn btn-unique">Edit Farmer</button></a>
+            <form action="/farmers/{{id}}/delete" method="post">
+                <a href="/farmers/{{id}}/delete"><button class="btn btn-dark-green">Delete Farmer</button></a>
+            </form>
+        </div>
+    {{/each}}
+
+    <div class="row text-center">
+        <a href="/farmers/new"><button class="btn btn-outline-success">Add New Farmer</button></a>
+    </div>
+{{/partial}}
+{{> layout.hbs}}
