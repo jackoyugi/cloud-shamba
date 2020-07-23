@@ -25,3 +25,11 @@ location VARCHAR,
 contacts VARCHAR
 );
 
+CREATE TABLE IF NOT EXISTS feeds (
+id int PRIMARY KEY auto_increment,
+feed_type VARCHAR,
+location VARCHAR,
+price INTEGER,
+quantity INTEGER
+)
+

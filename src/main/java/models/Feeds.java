@@ -7,6 +7,7 @@ public class Feeds {
     private String location;
     private int price;
     private int quantity;
+
     public Feeds(String feed_type, String location, int price, int quantity){
         this.location=location;
         this.feed_type=feed_type;
