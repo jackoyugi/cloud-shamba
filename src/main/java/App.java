@@ -11,7 +11,7 @@ import dao.Sql2oDiagnosisDao;
 import dao.Sql2oFarmerDao;
 import dao.Sql2oFeedsDao;
 import dao.Sql2oVaccinationDao;
-import org.sql2o.Sql2o;
+import org.sql2o.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,21 +21,33 @@ import static spark.Spark.get;
 
 public class App {
     public static void main(String[] args) {
-        ProcessBuilder processBuilder = new ProcessBuilder();
-        Integer port;
-
-        if (processBuilder.environment().get("PORT") != null) {
-            port = Integer.parseInt(processBuilder.environment().get("PORT"));
-        } else {
-            port = 4567;
-        }
-        port(port);
-//        port(getHerokuAssignedPort());
         staticFileLocation("/public");
+        String connectionString = "jdbc:h2:~/cloud_shamba.db;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
+        Sql2o sql2o = new Sql2o(connectionString, "", "");
+        Sql2oAnimalDao animalDao = new Sql2oAnimalDao(sql2o);
+        Sql2oDiagnosisDao diagnosisDao = new Sql2oDiagnosisDao(sql2o);
 
         get("/", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
             return new ModelAndView(model, "index.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //show animals form
+        get("/animals/new", (request, response) -> {
+            Map<String, Object> model = new HashMap<String, Object>();
+            List<Animal> animals = animalDao.getAll();
+            model.put("animals", animals);
+            return new ModelAndView(model, "animal-form.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //process animals form
+        post("/animals", (request, response) -> { //new
+            Map<String, Object> model = new HashMap<>();
+            String animal_type = request.queryParams("animal_type");
+            Animal newAnimal = new Animal(animal_type);
+            animalDao.add(newAnimal);
+            response.redirect("/animal.hbs");
+            return null;
         }, new HandlebarsTemplateEngine());
 
         //show diagnosis form
