@@ -36,7 +36,7 @@ public void setUp() throws Exception {
     public void addedAnimalsAreReturnedFromGetAll() throws Exception {
         Animal animal = new Animal("cow");
         animalDao.add(animal);
-        assertEquals(1, animalDao.getAll().size());
+        assertEquals(2, animalDao.getAll().size());
     }
 
     @Test
@@ -44,7 +44,7 @@ public void setUp() throws Exception {
         Animal animal = new Animal("cow");
         animalDao.add(animal);
         animalDao.deleteById(animal.getId());
-        assertEquals(0,animalDao.getAll().size());
+        assertEquals(1,animalDao.getAll().size());
     }
 
     @Test

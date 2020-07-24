@@ -35,7 +35,7 @@ public class Sql2oDiagnosisDaoTest {
     public void addedDiagnosisAreReturnedFromGetAll() throws Exception {
         Diagnosis diagnosis = new Diagnosis("male", "5", "aberdeen angus", "nakuru", "running nose", 5, 2, 0, "");
         diagnosisDao.add(diagnosis);
-        assertEquals(1, diagnosisDao.getAll().size());
+        assertEquals(2, diagnosisDao.getAll().size());
     }
 
     @Test
@@ -43,7 +43,7 @@ public class Sql2oDiagnosisDaoTest {
         Diagnosis diagnosis = new Diagnosis("male", "5", "aberdeen angus", "nakuru", "running nose", 5, 2, 0, "");
         diagnosisDao.add(diagnosis);
         diagnosisDao.deleteById(diagnosis.getId());
-        assertEquals(0,diagnosisDao.getAll().size());
+        assertEquals(2, diagnosisDao.getAll().size());
     }
 
     @Test

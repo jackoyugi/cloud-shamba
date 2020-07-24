@@ -42,7 +42,7 @@ public class VaccinationTest {
     public void setId() {
         Vaccination testVaccine = setupVaccination();
         testVaccine.getId(0);
-        assertNotEquals(2, testVaccine.getId(2));
+        assertNotEquals(1, testVaccine.getId(2));
     }
     public Vaccination setupVaccination(){
         return new Vaccination("poultry vaccine schedule", 100);

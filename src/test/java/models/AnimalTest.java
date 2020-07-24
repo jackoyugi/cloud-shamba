@@ -32,17 +32,17 @@ public class AnimalTest {
     @Test
     public void getAnimal_type() {
         Animal testAnimal = setupAnimal();
-        assertEquals("Cow", testAnimal.getAnimal_type());
+        assertEquals("animals", testAnimal.getAnimal_type());
     }
 
     @Test
     public void setAnimal_type() {
         Animal testAnimal = setupAnimal();
-        testAnimal.setAnimal_type("Cow");
+        testAnimal.setAnimal_type("animals");
         assertNotEquals("Kuku", testAnimal.getAnimal_type());
     }
 
     public Animal setupAnimal(){
-        return new Animal("Cow");
+        return new Animal("animals");
     }
 }

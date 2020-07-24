@@ -36,7 +36,7 @@ public class Sql2oFarmerDaoTest {
     public void addedFarmersAreReturnedFromGetAll() throws Exception {
         Farmer farmer = new Farmer("John", "nakuru", "0727396930");
         farmerDao.add(farmer);
-        assertEquals(1, farmerDao.getAll().size());
+        assertEquals(2, farmerDao.getAll().size());
     }
 
     @Test
@@ -44,7 +44,7 @@ public class Sql2oFarmerDaoTest {
         Farmer farmer = new Farmer("John", "nakuru", "0727396930");
         farmerDao.add(farmer);
         farmerDao.deleteById(farmer.getId());
-        assertEquals(0,farmerDao.getAll().size());
+        assertEquals(2,farmerDao.getAll().size());
     }
 
     @Test

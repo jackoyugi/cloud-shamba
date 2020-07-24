@@ -45,7 +45,7 @@ public class Sql2oFeedsDaoTest {
         Feeds feeds = new Feeds("poultry food", "kapenguria", 200, 3);
         feedsDao.add(feeds);
         feedsDao.deleteById(feeds.getId());
-        assertEquals(0,feedsDao.getAll().size());
+        assertEquals(2,feedsDao.getAll().size());
     }
 
     @Test

@@ -1,12 +1,14 @@
 import com.google.gson.Gson;
 import dao.*;
 import models.Animal;
+import models.Diagnosis;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static models.Animal.animals;
@@ -50,10 +52,36 @@ public class App {
             return new ModelAndView(model, "index.hbs");
         }, new HandlebarsTemplateEngine());
 
-//        get("/animals/new", (request, response) -> {
-//            Map<String, Object> model = new HashMap<>();
-//            return new ModelAndView(model, "animal-form.hbs");
-//        }, new HandlebarsTemplateEngine());
+        get("/animals/new", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            return new ModelAndView(model, "animal-form.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //show diagnosis form
+        get("/diagnosis/new", (request, response) -> {
+            Map<String, Object> model = new HashMap<String, Object>();
+            List< Diagnosis > diagnoses = diagnosisDao.getAll();
+            model.put("diagnoses", diagnoses);
+            return new ModelAndView(model, "diagnosis-form.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //process diagnosis form
+        post("/diagnosis", (request, response) -> { //new
+            Map<String, Object> model = new HashMap<>();
+            String sex = request.queryParams("sex");
+            String age = request.queryParams("age");
+            String breed = request.queryParams("breed");
+            String location = request.queryParams("location");
+            String clinical_signs = request.queryParams("clinical_signs");
+            int herd_number = Integer.parseInt(request.queryParams("herd_number"));
+            int number_dead = Integer.parseInt(request.queryParams("number_dead"));
+            int number_sick = Integer.parseInt(request.queryParams("number_sick"));
+            String photo_url=request.queryParams("photo_url");
+            Diagnosis newDiagnosis = new Diagnosis(sex, age, breed, location, clinical_signs, herd_number, number_dead, number_sick, photo_url);
+            diagnosisDao.add(newDiagnosis);
+            response.redirect("/");
+            return null;
+        }, new HandlebarsTemplateEngine());
 
 
 
