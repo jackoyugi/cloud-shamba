@@ -93,8 +93,16 @@ public class App {
             int flock_number = Integer.parseInt(request.queryParams("flock_number"));
             Vaccination newVaccination = new Vaccination(vaccination_programme, flock_number);
             vaccinationDao.add(newVaccination);
-            response.redirect("/vaccination.hbs");
+            response.redirect("/vaccinations");
             return null;
+        }, new HandlebarsTemplateEngine());
+
+        //show vaccinations
+        get("/vaccinations", (request, response) -> {
+            Map<String, Object> model = new HashMap<String, Object>();
+            List<Vaccination> vaccinations = vaccinationDao.getAll();
+            model.put("vaccinations", vaccinations);
+            return new ModelAndView(model, "vaccination.hbs");
         }, new HandlebarsTemplateEngine());
 
         //show feeds form
