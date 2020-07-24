@@ -129,5 +129,26 @@ public class App {
             model.put("feeds", feeds);
             return new ModelAndView(model, "feeds-form.hbs");
         }, new HandlebarsTemplateEngine());
+
+        //process feeds form
+        post("/feeds", (request, response) -> { //new
+            Map<String, Object> model = new HashMap<>();
+            String location = request.queryParams("location");
+            String feed_type = request.queryParams("feed_type");
+            int price = Integer.parseInt(request.queryParams("price"));
+            int quantity = Integer.parseInt(request.queryParams("quantity"));
+            Feeds newFeeds = new Feeds(location, feed_type, price, quantity);
+            feedsDao.add(newFeeds);
+            response.redirect("/feeds");
+            return null;
+        }, new HandlebarsTemplateEngine());
+
+        //show feeds form
+        get("/feeds", (request, response) -> {
+            Map<String, Object> model = new HashMap<String, Object>();
+            List<Feeds> feeds = feedsDao.getAll();
+            model.put("feeds", feeds);
+            return new ModelAndView(model, "feeds.hbs");
+        }, new HandlebarsTemplateEngine());
     }
 }
