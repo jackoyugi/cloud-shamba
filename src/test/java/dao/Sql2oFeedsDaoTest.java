@@ -14,7 +14,8 @@ public class Sql2oFeedsDaoTest {
     @Before
     public void setUp() throws Exception {
         String connectionString = "jdbc:h2:mem:testing;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
-        Sql2o sql2o = new Sql2o(connectionString, "", "");
+        String connectingString= "jdbc:postgresql://localhost:5432/cloud_shamba_test";
+        Sql2o sql2o = new Sql2o(connectingString, "jackoyugi", "00100");
         feedsDao = new Sql2oFeedsDao(sql2o);
         conn = sql2o.open();
     }
