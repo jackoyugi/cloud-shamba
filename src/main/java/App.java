@@ -74,8 +74,16 @@ public class App {
             String photo_url=request.queryParams("photo_url");
             Diagnosis newDiagnosis = new Diagnosis(sex, age, breed, location, clinical_signs, herd_number, number_dead, number_sick, photo_url);
             diagnosisDao.add(newDiagnosis);
-            response.redirect("/");
+            response.redirect("/diagnosis");
             return null;
+        }, new HandlebarsTemplateEngine());
+
+        //show diagnoses
+        get("/diagnosis", (request, response) -> {
+            Map<String, Object> model = new HashMap<String, Object>();
+            List<Diagnosis> diagnoses = diagnosisDao.getAll();
+            model.put("diagnoses", diagnoses);
+            return new ModelAndView(model, "diagnosis.hbs");
         }, new HandlebarsTemplateEngine());
 
         //show vaccination form
