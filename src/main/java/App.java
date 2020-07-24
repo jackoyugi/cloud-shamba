@@ -48,9 +48,18 @@ public class App {
             String animal_type = request.queryParams("animal_type");
             Animal newAnimal = new Animal(animal_type);
             animalDao.add(newAnimal);
-            response.redirect("/animal.hbs");
+            response.redirect("/animals");
             return null;
         }, new HandlebarsTemplateEngine());
+
+        //show animals
+        get("/animals", (request, response) -> {
+            Map<String, Object> model = new HashMap<String, Object>();
+            List<Animal> animals = animalDao.getAll();
+            model.put("animals", animals);
+            return new ModelAndView(model, "animal.hbs");
+        }, new HandlebarsTemplateEngine());
+
 
         //show diagnosis form
         get("/diagnosis/new", (request, response) -> {
@@ -81,8 +90,8 @@ public class App {
         //show diagnoses
         get("/diagnosis", (request, response) -> {
             Map<String, Object> model = new HashMap<String, Object>();
-            List<Diagnosis> diagnoses = diagnosisDao.getAll();
-            model.put("diagnoses", diagnoses);
+            List<Diagnosis> diagnosis = diagnosisDao.getAll();
+            model.put("diagnosis", diagnosis);
             return new ModelAndView(model, "diagnosis.hbs");
         }, new HandlebarsTemplateEngine());
 
