@@ -26,6 +26,8 @@ public class App {
         Sql2o sql2o = new Sql2o(connectionString, "", "");
         Sql2oAnimalDao animalDao = new Sql2oAnimalDao(sql2o);
         Sql2oDiagnosisDao diagnosisDao = new Sql2oDiagnosisDao(sql2o);
+        Sql2oVaccinationDao vaccinationDao = new Sql2oVaccinationDao(sql2o);
+        Sql2oFeedsDao feedsDao = new Sql2oFeedsDao(sql2o);
 
         get("/", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
@@ -75,7 +77,32 @@ public class App {
             response.redirect("/");
             return null;
         }, new HandlebarsTemplateEngine());
+
+        //show vaccination form
+        get("/vaccinations/new", (request, response) -> {
+            Map<String, Object> model = new HashMap<String, Object>();
+            List<Vaccination> vaccinations = vaccinationDao.getAll();
+            model.put("vaccinations", vaccinations);
+            return new ModelAndView(model, "vaccination-form.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //process vaccination form
+        post("/vaccinations", (request, response) -> { //new
+            Map<String, Object> model = new HashMap<>();
+            String vaccination_programme = request.queryParams("vaccination_programme");
+            int flock_number = Integer.parseInt(request.queryParams("flock_number"));
+            Vaccination newVaccination = new Vaccination(vaccination_programme, flock_number);
+            vaccinationDao.add(newVaccination);
+            response.redirect("/vaccination.hbs");
+            return null;
+        }, new HandlebarsTemplateEngine());
+
+        //show feeds form
+        get("/feeds/new", (request, response) -> {
+            Map<String, Object> model = new HashMap<String, Object>();
+            List<Feeds> feeds = feedsDao.getAll();
+            model.put("feeds", feeds);
+            return new ModelAndView(model, "feeds-form.hbs");
+        }, new HandlebarsTemplateEngine());
     }
-
-
 }
