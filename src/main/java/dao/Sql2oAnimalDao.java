@@ -45,6 +45,19 @@ public class Sql2oAnimalDao implements AnimalDao {
     }
 
     @Override
+    public void update(int id, String newAnimal_type){
+        String sql = "UPDATE animals SET animal_type = :animal_type WHERE id = :id";
+        try(Connection con = sql2o.open()){
+            con.createQuery(sql)
+                    .addParameter("animal_type", newAnimal_type)
+                    .addParameter("id", id)
+                    .executeUpdate();
+        } catch (Sql2oException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @Override
     public void deleteById(int id) {
         String sql = "DELETE from animals WHERE id=:id";
         try (Connection con = sql2o.open()) {

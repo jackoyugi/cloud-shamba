@@ -44,6 +44,21 @@ public class Sql2oFarmerDao implements FarmerDao{
     }
 
     @Override
+    public void update(int id, String newName, String newLocation, String newContacts){
+        String sql = "UPDATE farmers SET name = :name, location = :location, contacts = :contacts WHERE id = :id";
+        try(Connection con = sql2o.open()){
+            con.createQuery(sql)
+                    .addParameter("name", newName)
+                    .addParameter("location", newLocation)
+                    .addParameter("contacts", newContacts)
+                    .addParameter("id", id)
+                    .executeUpdate();
+        } catch (Sql2oException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @Override
     public void deleteById(int id) {
         String sql = "DELETE from farmers WHERE id = :id"; //raw sql
         try (Connection con = sql2o.open()) {

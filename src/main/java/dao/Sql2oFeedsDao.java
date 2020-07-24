@@ -44,6 +44,22 @@ public class Sql2oFeedsDao implements FeedsDao{
     }
 
     @Override
+    public void update(int id, String newFeed_type, String newLocation, int newPrice, int newQuantity){
+        String sql = "UPDATE feeds SET feed_type = :feed_type, location = :location, price = :price, quantity = :quantity WHERE id = :id";
+        try(Connection con = sql2o.open()){
+            con.createQuery(sql)
+                    .addParameter("feed_type", newFeed_type)
+                    .addParameter("location", newLocation)
+                    .addParameter("price", newPrice)
+                    .addParameter("quantity", newQuantity)
+                    .addParameter("id", id)
+                    .executeUpdate();
+        } catch (Sql2oException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @Override
     public void deleteById(int id) {
         String sql = "DELETE from feeds WHERE id = :id"; //raw sql
         try (Connection con = sql2o.open()) {

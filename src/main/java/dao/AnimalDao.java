@@ -15,6 +15,9 @@ public interface AnimalDao {
     //READ
     Animal findById(int id);
 
+    //UPDATE
+    void update(int id, String animal_type);
+
     //DELETE
     void deleteById(int id);
     void clearAllAnimals();

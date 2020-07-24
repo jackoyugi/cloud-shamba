@@ -45,6 +45,27 @@ public class Sql2oDiagnosisDao implements DiagnosisDao{
     }
 
     @Override
+    public void update(int id, String newSex, String newAge, String newBreed, String newLocation, String newClinical_signs, int newHerd_number, int newNumber_sick, int newNumber_dead, String newPhoto_url){
+        String sql = "UPDATE diagnosis SET sex = :sex, age = :age, breed = :breed, location = :location, clinical_signs = :clinical_signs, herd_number = :herd_number, number_sick = :number_sick, number_dead = :number_dead, photo_url = :photo_url WHERE id = :id";
+        try(Connection con = sql2o.open()){
+            con.createQuery(sql)
+                    .addParameter("sex", newSex)
+                    .addParameter("age", newAge)
+                    .addParameter("breed", newBreed)
+                    .addParameter("location", newLocation)
+                    .addParameter("clinical_signs", newClinical_signs)
+                    .addParameter("herd_number", newHerd_number)
+                    .addParameter("number_sick", newNumber_sick)
+                    .addParameter("number_dead", newNumber_dead)
+                    .addParameter("photo_url", newPhoto_url)
+                    .addParameter("id", id)
+                    .executeUpdate();
+        } catch (Sql2oException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @Override
     public void deleteById(int id) {
         String sql = "DELETE from diagnosis WHERE id = :id"; //raw sql
         try (Connection con = sql2o.open()) {

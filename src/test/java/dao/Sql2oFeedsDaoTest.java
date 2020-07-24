@@ -40,6 +40,16 @@ public class Sql2oFeedsDaoTest {
     }
 
     @Test
+    public void updateChangesFeedsContent() throws Exception {
+        String initialLocation = "kapenguria";
+        Feeds feeds = new Feeds("poultry food", "kapenguria", 200, 3);
+        feedsDao.add(feeds);
+        feedsDao.update(feeds.getId(),"dog food", "kericho", 300, 4);
+        Feeds updatedFeeds = feedsDao.findById(feeds.getId());
+        assertNotEquals(initialLocation, updatedFeeds.getLocation());
+    }
+
+    @Test
     public void deleteByIdDeletesFeeds() {
         Feeds feeds = new Feeds("poultry food", "kapenguria", 200, 3);
         feedsDao.add(feeds);

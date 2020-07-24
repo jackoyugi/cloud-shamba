@@ -17,6 +17,9 @@ public interface FeedsDao {
     //READ
     Feeds findById(int id);
 
+    //UPDATE
+    void update (int id, String feed_type, String location, int price, int quantity);
+
     //DELETE
     void deleteById(int id);
     void clearAllFeeds();

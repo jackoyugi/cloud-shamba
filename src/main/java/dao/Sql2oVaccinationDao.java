@@ -45,6 +45,20 @@ public class Sql2oVaccinationDao implements VaccinationDao{
     }
 
     @Override
+    public void update(int id, String newVaccination_programme, int newFlock_number){
+        String sql = "UPDATE vaccinations SET vaccination_programme = :vaccination_programme, flock_number = :flock_number WHERE id = :id";
+        try(Connection con = sql2o.open()){
+            con.createQuery(sql)
+                    .addParameter("vaccination_programme", newVaccination_programme)
+                    .addParameter("flock_number", newFlock_number)
+                    .addParameter("id", id)
+                    .executeUpdate();
+        } catch (Sql2oException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @Override
     public void deleteById(int id) {
         String sql = "DELETE from vaccinations WHERE id = :id"; //raw sql
         try (Connection con = sql2o.open()) {
@@ -59,7 +73,7 @@ public class Sql2oVaccinationDao implements VaccinationDao{
 
     @Override
     public void clearAllVaccinations() {
-        String sql = "DELETE from vacations";
+        String sql = "DELETE from vaccinations";
         try (Connection con = sql2o.open()) {
             con.createQuery(sql).executeUpdate();
         } catch (Sql2oException ex) {

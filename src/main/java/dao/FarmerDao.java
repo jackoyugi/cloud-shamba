@@ -15,6 +15,10 @@ public interface FarmerDao {
     //READ
     Farmer findById(int id);
 
+    //UPDATE
+    void update (int id, String name, String location, String contacts);
+
+
     //DELETE
     void deleteById(int id);
     void clearAllFarmers();

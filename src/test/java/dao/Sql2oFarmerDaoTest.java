@@ -39,6 +39,16 @@ public class Sql2oFarmerDaoTest {
     }
 
     @Test
+    public void updateChangesFarmerContent() throws Exception {
+        String initialName = "John";
+        Farmer farmer = new Farmer("John", "nakuru", "0727396930");
+        farmerDao.add(farmer);
+        farmerDao.update(farmer.getId(),"Jane", "nairobi", "0718556386");
+        Farmer updatedFarmer = farmerDao.findById(farmer.getId());
+        assertNotEquals(initialName, updatedFarmer.getName());
+    }
+
+    @Test
     public void deleteByIdDeletesFarmer() {
         Farmer farmer = new Farmer("John", "nakuru", "0727396930");
         farmerDao.add(farmer);

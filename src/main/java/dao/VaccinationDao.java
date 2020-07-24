@@ -15,6 +15,9 @@ public interface VaccinationDao {
     //READ
     Vaccination findById(int id);
 
+    //UPDATE
+    void update (int id, String vaccination_programme, int flock_number);
+
     //DELETE
     void deleteById(int id);
     void clearAllVaccinations();

@@ -47,6 +47,16 @@ public void setUp() throws Exception {
     }
 
     @Test
+    public void updateChangesAnimalContent() throws Exception {
+        String initialAnimal_type = "cow";
+        Animal animal = new Animal("cow");
+        animalDao.add(animal);
+        animalDao.update(animal.getId(),"goat");
+        Animal updatedAnimal = animalDao.findById(animal.getId());
+        assertNotEquals(initialAnimal_type, updatedAnimal.getAnimal_type());
+    }
+
+    @Test
     public void clearAllClearsAllAnimals() {
         Animal animal = new Animal("cow");
         Animal otherAnimal = new Animal("goat");

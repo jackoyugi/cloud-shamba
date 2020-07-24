@@ -38,6 +38,16 @@ public class Sql2oDiagnosisDaoTest {
     }
 
     @Test
+    public void updateChangesDiagnosisContent() throws Exception {
+        String initialSex = "male";
+        Diagnosis diagnosis = new Diagnosis("male", "5", "aberdeen angus", "nakuru", "running nose", 5, 2, 0, "");
+        diagnosisDao.add(diagnosis);
+        diagnosisDao.update(diagnosis.getId(),"female", "3", "aberdeen angus", "nakuru", "lack of appetite", 2, 1, 0, "");
+        Diagnosis updatedDiagnosis = diagnosisDao.findById(diagnosis.getId());
+        assertNotEquals(initialSex, updatedDiagnosis.getSex());
+    }
+
+    @Test
     public void deleteByIdDeletesDiagnosis() {
         Diagnosis diagnosis = new Diagnosis("male", "5", "aberdeen angus", "nakuru", "running nose", 5, 2, 0, "");
         diagnosisDao.add(diagnosis);

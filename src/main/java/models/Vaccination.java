@@ -28,7 +28,7 @@ public class Vaccination {
         this.flock_number = flock_number;
     }
 
-    public int getId(int id) {
+    public int getId() {
         return id;
     }
 
@@ -48,6 +48,6 @@ public class Vaccination {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getVaccination_programme(), getFlock_number(), getId(1));
+        return Objects.hash(getVaccination_programme(), getFlock_number(), getId());
     }
 }
