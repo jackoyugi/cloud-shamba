@@ -38,12 +38,12 @@ public class VaccinationTest {
         assertEquals(0, testVaccine.getId(0));
     }
 
-    @Test
-    public void setId() {
-        Vaccination testVaccine = setupVaccination();
-        testVaccine.getId(0);
-        assertNotEquals(1, testVaccine.getId(2));
-    }
+//    @Test
+//    public void setId() {
+//        Vaccination testVaccine = setupVaccination();
+//        testVaccine.getId(0);
+//        assertNotEquals(1, testVaccine.getId(2));
+//    }
     public Vaccination setupVaccination(){
         return new Vaccination("poultry vaccine schedule", 100);
     }
