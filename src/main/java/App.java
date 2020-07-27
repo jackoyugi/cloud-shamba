@@ -1,9 +1,15 @@
 import com.google.gson.Gson;
 import dao.*;
+import models.Animal;
+import models.Vaccination;
+import models.Feeds;
+import models.Farmer;
+import models.Diagnosis;
 //import models.Animal;
 //import models.Diagnosis;
 //import org.sql2o.Connection;
 //import org.sql2o.Sql2o;
+import org.sql2o.Sql2o;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
@@ -28,6 +34,14 @@ public class App {
         port(port);
 //        port(getHerokuAssignedPort());
         staticFileLocation("/public");
+
+        String connectionString = "jdbc:h2:~/cloud_shamba.db;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
+        Sql2o sql2o = new Sql2o(connectionString, "", "");
+        Sql2oAnimalDao animalDao = new Sql2oAnimalDao(sql2o);
+        Sql2oDiagnosisDao diagnosisDao = new Sql2oDiagnosisDao(sql2o);
+        Sql2oVaccinationDao vaccinationDao = new Sql2oVaccinationDao(sql2o);
+        Sql2oFeedsDao feedsDao = new Sql2oFeedsDao(sql2o);
+=======
         port(port);
 
         Sql2oAnimalDao animalDao;
