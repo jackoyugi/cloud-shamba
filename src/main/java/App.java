@@ -5,11 +5,7 @@ import models.Vaccination;
 import models.Feeds;
 import models.Farmer;
 import models.Diagnosis;
-//import models.Animal;
-//import models.Diagnosis;
-//import org.sql2o.Connection;
-//import org.sql2o.Sql2o;
-import org.sql2o.Sql2o;
+
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
