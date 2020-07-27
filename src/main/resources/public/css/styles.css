@@ -11,41 +11,49 @@
     font-size:30px;
     color: white;
 }
+
 .form input[type=text]{
-    color:white;
-    background:none;
       width: 100%;
       padding: 10px;
       margin: 10px 0;
       border: none;
       border-bottom: 1px solid white;
-      color: dark;
       outline: none;
       display: run-in;
       animation: formLd 1.2s linear 1;
-      font-size: extra-large;
-
 }
+
+.jumbotron {
+ text-align: center;
+}
+
 body{
     text-align: center;
-   
+    background-image:linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),url(/img/shamba2.jpg);
     position: relative;
     height: 100vh;
     background-repeat: no-repeat;
     background-size: cover;
     color: green;
 }
+
  nav{
     animation: 1s ease-out 0s 1 slideInFromRight;
     padding: 10px;
     display: inline-block;
+    padding: 10px 30px;
+    font-size: 1em;
+    color: white;
+    cursor: pointer;
+ }
+
+ @keyframes slideInFromRight {
       padding: 10px 10px;
       font-size: 1em;
       font-color: green;
       cursor: pointer;
   }
   @keyframes slideInFromRight {
-
       0% {
         transform: translateX(-50%);
         0%{left: -100vw;}
@@ -58,6 +66,7 @@ body{
             70%{box-shadow: 0px 0px 20px rgb(255, 255, 255)}
         transform: translateX(2);
       }
+ }
     }
     .collapse navbar-collapse{
     color: green;
